@@ -1,5 +1,6 @@
 #include "raylib.h"
 #include <stdio.h>
+#include <math.h>
 
 //-------------------objects-----------------
 typedef struct {
@@ -9,14 +10,8 @@ typedef struct {
 //-------------------------------------------
 
 //---------------functions-------------------
-void moviment(Player *playerMoviment) {
-    if (IsKeyDown(KEY_RIGHT)) playerMoviment->x += 2.0f;
-    if (IsKeyDown(KEY_LEFT)) playerMoviment->x -= 2.0f;
-    if (IsKeyDown(KEY_UP)) playerMoviment->y -= 2.0f;
-    if (IsKeyDown(KEY_DOWN)) playerMoviment->y += 2.0f;
-}
-
-
+void moviment(Player *playerMoviment, int screemW, int screemH);
+//-------------------------------------------
 
 int main(void)
 {
@@ -41,15 +36,25 @@ int main(void)
         //----------------------------------------------------------------------------------
         // TODO: Update your variables here
         //--------------------------------------------------------------------------------
-        moviment(&player1);
+        
+
+        if(IsKeyDown(KEY_R)) { 
+            player1.x = (float)screenWidth/2;
+            player1.y = (float)screenHeight/2;
+        }
+        
+        moviment(&player1, screenWidth, screenHeight);
+
+        
         // Draw
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
             ClearBackground(BLACK);
 
-            DrawCircle(player1.x, player1.y, 15, RAYWHITE);
-
+            DrawRectangle(300, 300, 400, 10, WHITE);
+            DrawCircle(player1.x, player1.y, 15, RED);
+            
         EndDrawing();
         //----------------------------------------------------------------------------------
     }
@@ -60,4 +65,35 @@ int main(void)
     //--------------------------------------------------------------------------------------
 
     return 0;
+}
+
+
+void moviment(Player *playerMoviment, int screemW, int screemH) {
+    if(playerMoviment->x <= 15) {
+        if (IsKeyDown(KEY_RIGHT)) playerMoviment->x += 3.0f;
+        if (IsKeyDown(KEY_LEFT)) playerMoviment->x -= 0.0f;
+        if (IsKeyDown(KEY_UP)) playerMoviment->y -= 3.0f;
+        if (IsKeyDown(KEY_DOWN)) playerMoviment->y += 3.0f;
+    } else if(playerMoviment->x >= screemW - 15) {
+        if (IsKeyDown(KEY_RIGHT)) playerMoviment->x += 0.0f;
+        if (IsKeyDown(KEY_LEFT)) playerMoviment->x -= 3.0f;
+        if (IsKeyDown(KEY_UP)) playerMoviment->y -= 3.0f;
+        if (IsKeyDown(KEY_DOWN)) playerMoviment->y += 3.0f;
+    } else if(playerMoviment->y <= 15) {
+        if (IsKeyDown(KEY_RIGHT)) playerMoviment->x += 3.0f;
+        if (IsKeyDown(KEY_LEFT)) playerMoviment->x -= 3.0f;
+        if (IsKeyDown(KEY_UP)) playerMoviment->y -= 0.0f;
+        if (IsKeyDown(KEY_DOWN)) playerMoviment->y += 3.0f;
+    } else if(playerMoviment->y >= screemH - 15) {
+        if (IsKeyDown(KEY_RIGHT)) playerMoviment->x += 3.0f;
+        if (IsKeyDown(KEY_LEFT)) playerMoviment->x -= 3.0f;
+        if (IsKeyDown(KEY_UP)) playerMoviment->y -= 3.0f;
+        if (IsKeyDown(KEY_DOWN)) playerMoviment->y += 0.0f;
+    } else {
+        if (IsKeyDown(KEY_RIGHT)) playerMoviment->x += 3.0f;
+        if (IsKeyDown(KEY_LEFT)) playerMoviment->x -= 3.0f;
+        if (IsKeyDown(KEY_UP)) playerMoviment->y -= 3.0f;
+        if (IsKeyDown(KEY_DOWN)) playerMoviment->y += 3.0f;
+    }
+
 }

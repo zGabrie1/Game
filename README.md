@@ -1,0 +1,2 @@
+- Bordas sem limites
+- Tornar objeto tangível
