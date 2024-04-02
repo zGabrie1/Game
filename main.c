@@ -9,7 +9,12 @@ typedef struct {
 //-------------------------------------------
 
 //---------------functions-------------------
-
+void moviment(Player *playerMoviment) {
+    if (IsKeyDown(KEY_RIGHT)) playerMoviment->x += 2.0f;
+    if (IsKeyDown(KEY_LEFT)) playerMoviment->x -= 2.0f;
+    if (IsKeyDown(KEY_UP)) playerMoviment->y -= 2.0f;
+    if (IsKeyDown(KEY_DOWN)) playerMoviment->y += 2.0f;
+}
 
 
 
@@ -36,11 +41,7 @@ int main(void)
         //----------------------------------------------------------------------------------
         // TODO: Update your variables here
         //--------------------------------------------------------------------------------
-        if (IsKeyDown(KEY_RIGHT)) player1.x += 2.0f;
-        if (IsKeyDown(KEY_LEFT)) player1.x -= 2.0f;
-        if (IsKeyDown(KEY_UP)) player1.y -= 2.0f;
-        if (IsKeyDown(KEY_DOWN)) player1.y += 2.0f;
-
+        moviment(&player1);
         // Draw
         //----------------------------------------------------------------------------------
         BeginDrawing();
