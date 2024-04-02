@@ -37,11 +37,6 @@ int main(void)
         // TODO: Update your variables here
         //--------------------------------------------------------------------------------
 
-        if (IsKeyDown(KEY_RIGHT)) player1.x += 2.0f;
-        if (IsKeyDown(KEY_LEFT)) player1.x -= 2.0f;
-        if (IsKeyDown(KEY_UP)) player1.y -= 2.0f;
-        if (IsKeyDown(KEY_DOWN)) player1.y += 2.0f;
-
         // Draw
         //----------------------------------------------------------------------------------
         BeginDrawing();
