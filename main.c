@@ -8,40 +8,10 @@ typedef struct {
     float y;
 } Player;
 //-------------------------------------------
-//  x    y   w    h
-// 300, 300, 400, 10
+
 //---------------functions-------------------
-
-void moviment(Player *playerMoviment, int screemW, int screemH) {
-    if(playerMoviment->x <= 15) {
-        if (IsKeyDown(KEY_RIGHT)) playerMoviment->x += 3.0f;
-        if (IsKeyDown(KEY_LEFT)) playerMoviment->x -= 0.0f;
-        if (IsKeyDown(KEY_UP)) playerMoviment->y -= 3.0f;
-        if (IsKeyDown(KEY_DOWN)) playerMoviment->y += 3.0f;
-    } else if(playerMoviment->x >= screemW - 15) {
-        if (IsKeyDown(KEY_RIGHT)) playerMoviment->x += 0.0f;
-        if (IsKeyDown(KEY_LEFT)) playerMoviment->x -= 3.0f;
-        if (IsKeyDown(KEY_UP)) playerMoviment->y -= 3.0f;
-        if (IsKeyDown(KEY_DOWN)) playerMoviment->y += 3.0f;
-    } else if(playerMoviment->y <= 15) {
-        if (IsKeyDown(KEY_RIGHT)) playerMoviment->x += 3.0f;
-        if (IsKeyDown(KEY_LEFT)) playerMoviment->x -= 3.0f;
-        if (IsKeyDown(KEY_UP)) playerMoviment->y -= 0.0f;
-        if (IsKeyDown(KEY_DOWN)) playerMoviment->y += 3.0f;
-    } else if(playerMoviment->y >= screemH - 15) {
-        if (IsKeyDown(KEY_RIGHT)) playerMoviment->x += 3.0f;
-        if (IsKeyDown(KEY_LEFT)) playerMoviment->x -= 3.0f;
-        if (IsKeyDown(KEY_UP)) playerMoviment->y -= 3.0f;
-        if (IsKeyDown(KEY_DOWN)) playerMoviment->y += 0.0f;
-    } else {
-        if (IsKeyDown(KEY_RIGHT)) playerMoviment->x += 3.0f;
-        if (IsKeyDown(KEY_LEFT)) playerMoviment->x -= 3.0f;
-        if (IsKeyDown(KEY_UP)) playerMoviment->y -= 3.0f;
-        if (IsKeyDown(KEY_DOWN)) playerMoviment->y += 3.0f;
-    }
-
-}
-
+void moviment(Player *playerMoviment, int screemW, int screemH);
+//-------------------------------------------
 
 int main(void)
 {
@@ -94,4 +64,35 @@ int main(void)
     //--------------------------------------------------------------------------------------
 
     return 0;
+}
+
+
+void moviment(Player *playerMoviment, int screemW, int screemH) {
+    if(playerMoviment->x <= 15) {
+        if (IsKeyDown(KEY_RIGHT)) playerMoviment->x += 3.0f;
+        if (IsKeyDown(KEY_LEFT)) playerMoviment->x -= 0.0f;
+        if (IsKeyDown(KEY_UP)) playerMoviment->y -= 3.0f;
+        if (IsKeyDown(KEY_DOWN)) playerMoviment->y += 3.0f;
+    } else if(playerMoviment->x >= screemW - 15) {
+        if (IsKeyDown(KEY_RIGHT)) playerMoviment->x += 0.0f;
+        if (IsKeyDown(KEY_LEFT)) playerMoviment->x -= 3.0f;
+        if (IsKeyDown(KEY_UP)) playerMoviment->y -= 3.0f;
+        if (IsKeyDown(KEY_DOWN)) playerMoviment->y += 3.0f;
+    } else if(playerMoviment->y <= 15) {
+        if (IsKeyDown(KEY_RIGHT)) playerMoviment->x += 3.0f;
+        if (IsKeyDown(KEY_LEFT)) playerMoviment->x -= 3.0f;
+        if (IsKeyDown(KEY_UP)) playerMoviment->y -= 0.0f;
+        if (IsKeyDown(KEY_DOWN)) playerMoviment->y += 3.0f;
+    } else if(playerMoviment->y >= screemH - 15) {
+        if (IsKeyDown(KEY_RIGHT)) playerMoviment->x += 3.0f;
+        if (IsKeyDown(KEY_LEFT)) playerMoviment->x -= 3.0f;
+        if (IsKeyDown(KEY_UP)) playerMoviment->y -= 3.0f;
+        if (IsKeyDown(KEY_DOWN)) playerMoviment->y += 0.0f;
+    } else {
+        if (IsKeyDown(KEY_RIGHT)) playerMoviment->x += 3.0f;
+        if (IsKeyDown(KEY_LEFT)) playerMoviment->x -= 3.0f;
+        if (IsKeyDown(KEY_UP)) playerMoviment->y -= 3.0f;
+        if (IsKeyDown(KEY_DOWN)) playerMoviment->y += 3.0f;
+    }
+
 }
