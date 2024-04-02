@@ -42,6 +42,7 @@ int main(void)
             player1.x = (float)screenWidth/2;
             player1.y = (float)screenHeight/2;
         }
+        
         moviment(&player1, screenWidth, screenHeight);
 
         
