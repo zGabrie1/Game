@@ -10,7 +10,7 @@ typedef struct {
 //-------------------------------------------
 
 //---------------functions-------------------
-void moviment(Player *playerMoviment, int screemW, int screemH);
+void moviment(Player *playerMoviment, int screemW, int screemH, int objectX, int objectY, int playerSize, int objectW, int objectH);
 //-------------------------------------------
 
 int main(void)
@@ -19,6 +19,7 @@ int main(void)
     //--------------------------------------------------------------------------------------
     const int screenWidth = 800;
     const int screenHeight = 450;
+    int playerSize = 15;
 
     Player player1;
     player1.x = (float)screenWidth/2;
@@ -42,18 +43,16 @@ int main(void)
             player1.x = (float)screenWidth/2;
             player1.y = (float)screenHeight/2;
         }
-        
-        moviment(&player1, screenWidth, screenHeight);
 
+        moviment(&player1, screenWidth, screenHeight, 300, 300, playerSize, 400, 10);
         
         // Draw
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
             ClearBackground(BLACK);
-
             DrawRectangle(300, 300, 400, 10, WHITE);
-            DrawCircle(player1.x, player1.y, 15, RED);
+            DrawCircle(player1.x, player1.y, playerSize, RED);
             
         EndDrawing();
         //----------------------------------------------------------------------------------
@@ -68,7 +67,7 @@ int main(void)
 }
 
 
-void moviment(Player *playerMoviment, int screemW, int screemH) {
+void moviment(Player *playerMoviment, int screemW, int screemH, int objectX, int objectY, int playerSize, int objectW, int objectH) {
 
     if (IsKeyDown(KEY_RIGHT)) {
         if (playerMoviment->x < screemW - 15) {
@@ -90,4 +89,13 @@ void moviment(Player *playerMoviment, int screemW, int screemH) {
             playerMoviment->y += 3.0f;
         }
     }
+
+    //-----------collision with objects------------
+
+    if (IsKeyDown(KEY_DOWN)) {
+        if ((playerMoviment->y > objectY - objectH/2 - playerSize + 5) && (playerMoviment->x < objectX + objectW + playerSize) && (playerMoviment->x > objectX - playerSize)) {
+            playerMoviment->y -= 3.0f;
+        }
+    }
+
 }
