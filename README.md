@@ -1,2 +1,2 @@
-- Bordas sem limites
 - Tornar objeto tangível
+- Criar estrutura objeto 
