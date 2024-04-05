@@ -7,10 +7,23 @@ typedef struct {
     float x;
     float y;
 } Player;
+
+typedef struct {
+
+    int uprightX;
+    int upleftX;
+    int upY;
+    
+    int bottomrightX;
+    int bottomleftX;
+    int bottomY;
+
+} Object;
+
 //-------------------------------------------
 
 //---------------functions-------------------
-void moviment(Player *playerMoviment, int screemW, int screemH, int objectX, int objectY, int playerSize, int objectW, int objectH);
+void moviment(Player *playerMoviment, int screemW, int screemH, Object object);
 //-------------------------------------------
 
 int main(void)
@@ -24,6 +37,11 @@ int main(void)
     Player player1;
     player1.x = (float)screenWidth/2;
     player1.y = (float)screenHeight/2;
+
+    Object object1;
+    object1.upleftX = 300 - playerSize;
+    object1.uprightX = 300 + 400 + playerSize;
+    object1.upY = 300 - playerSize;
 
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
 
@@ -44,7 +62,7 @@ int main(void)
             player1.y = (float)screenHeight/2;
         }
 
-        moviment(&player1, screenWidth, screenHeight, 300, 300, playerSize, 400, 10);
+        moviment(&player1, screenWidth, screenHeight, object1);
         
         // Draw
         //----------------------------------------------------------------------------------
@@ -67,7 +85,7 @@ int main(void)
 }
 
 
-void moviment(Player *playerMoviment, int screemW, int screemH, int objectX, int objectY, int playerSize, int objectW, int objectH) {
+void moviment(Player *playerMoviment, int screemW, int screemH, Object object) {
 
     if (IsKeyDown(KEY_RIGHT)) {
         if (playerMoviment->x < screemW - 15) {
@@ -91,11 +109,12 @@ void moviment(Player *playerMoviment, int screemW, int screemH, int objectX, int
     }
 
     //-----------collision with objects------------
-
+    //--------------UPSIDE-------------------------
     if (IsKeyDown(KEY_DOWN)) {
-        if ((playerMoviment->y > objectY - objectH/2 - playerSize + 5) && (playerMoviment->x < objectX + objectW + playerSize) && (playerMoviment->x > objectX - playerSize)) {
+        if ((playerMoviment->y > object.upY) && ((playerMoviment->x < object.uprightX) && (playerMoviment->x > object.upleftX))) {
             playerMoviment->y -= 3.0f;
         }
     }
+    //--------------LEFTSIDE-----------------------
 
 }
