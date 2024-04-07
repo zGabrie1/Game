@@ -42,6 +42,7 @@ int main(void)
     object1.upleftX = 300 - playerSize;
     object1.uprightX = 300 + 400 + playerSize;
     object1.upY = 300 - playerSize;
+    object1.bottomY = 300 + 10 + playerSize;
 
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
 
@@ -111,10 +112,14 @@ void moviment(Player *playerMoviment, int screemW, int screemH, Object object) {
     //-----------collision with objects------------
     //--------------UPSIDE-------------------------
     if (IsKeyDown(KEY_DOWN)) {
-        if ((playerMoviment->y > object.upY) && ((playerMoviment->x < object.uprightX) && (playerMoviment->x > object.upleftX))) {
+        if ((playerMoviment->y > object.upY) && (playerMoviment->y < object.bottomY) && ((playerMoviment->x < object.uprightX) && (playerMoviment->x > object.upleftX))) {
             playerMoviment->y -= 3.0f;
         }
     }
-    //--------------LEFTSIDE-----------------------
-
+    //--------------DOWNSIDE-----------------------
+    if (IsKeyDown(KEY_UP)) {
+        if ((playerMoviment->y < object.bottomY) && ((playerMoviment->x < object.uprightX) && (playerMoviment->x > object.upleftX))) {
+            playerMoviment->y += 3.0f;
+        }
+    }
 }
