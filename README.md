@@ -1,2 +1,1 @@
 - Tornar objeto tangível
-- Criar estrutura objeto 
