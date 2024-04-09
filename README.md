@@ -1,1 +1,0 @@
-- Tornar objeto tangível

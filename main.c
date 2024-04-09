@@ -118,8 +118,21 @@ void moviment(Player *playerMoviment, int screemW, int screemH, Object object) {
     }
     //--------------DOWNSIDE-----------------------
     if (IsKeyDown(KEY_UP)) {
-        if ((playerMoviment->y < object.bottomY) && ((playerMoviment->x < object.uprightX) && (playerMoviment->x > object.upleftX))) {
+        if ((playerMoviment->y < object.bottomY) && (playerMoviment->y > object.upY) && ((playerMoviment->x < object.uprightX) && (playerMoviment->x > object.upleftX))) {
             playerMoviment->y += 3.0f;
         }
     }
+    //--------------LEFTSIDE-----------------------
+    if (IsKeyDown(KEY_LEFT)) {
+        if ((playerMoviment->x > object.upleftX) && (playerMoviment->x < object.uprightX) && ((playerMoviment->y > object.upY) && (playerMoviment->y < object.bottomY))) {
+            playerMoviment->x += 3.0f;
+        }
+    }
+    //--------------RIGHTSIDE-----------------------
+    if (IsKeyDown(KEY_RIGHT)) {
+        if ((playerMoviment->x < object.uprightX) && (playerMoviment->x > object.upleftX) && ((playerMoviment->y > object.upY) && (playerMoviment->y < object.bottomY))) {
+            playerMoviment->x -= 3.0f;
+        }
+    }
+
 }
