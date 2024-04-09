@@ -1,1 +1,1 @@
-- Tornar objeto tangível
+- Corrigir bug dos vértices
