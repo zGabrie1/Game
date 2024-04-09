@@ -135,6 +135,4 @@ void moviment(Player *playerMoviment, int screemW, int screemH, Object object) {
         }
     }
 
-    
-
 }
