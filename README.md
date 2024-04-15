@@ -1,1 +1,0 @@
-- Corrigir bug dos vértices
