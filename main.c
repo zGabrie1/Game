@@ -23,7 +23,7 @@ typedef struct {
 //-------------------------------------------
 
 //---------------functions-------------------
-void moviment(Player *playerMoviment, int screemW, int screemH, Object object);
+void moviment(Player *playerMoviment, int screenW, int screenH, Object object);
 //-------------------------------------------
 
 int main(void)
@@ -44,7 +44,7 @@ int main(void)
     object1.upY = 300 - playerSize;
     object1.bottomY = 300 + 10 + playerSize;
 
-    InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
+    InitWindow(screenWidth, screenHeight, "I'm goin in an adventure");
 
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
@@ -85,7 +85,6 @@ int main(void)
     return 0;
 }
 
-
 void moviment(Player *playerMoviment, int screemW, int screemH, Object object) {
 
     if (IsKeyDown(KEY_RIGHT)) {
@@ -112,25 +111,58 @@ void moviment(Player *playerMoviment, int screemW, int screemH, Object object) {
     //-----------collision with objects------------
     //--------------UPSIDE-------------------------
     if (IsKeyDown(KEY_DOWN)) {
-        if ((playerMoviment->y > object.upY) && (playerMoviment->y < object.bottomY) && ((playerMoviment->x < object.uprightX) && (playerMoviment->x > object.upleftX))) {
+        if ((playerMoviment->y > object.upY) && 
+            (playerMoviment->y < object.bottomY) && 
+            ((playerMoviment->x < object.uprightX) && 
+            (playerMoviment->x > object.upleftX))) {
             playerMoviment->y -= 3.0f;
         }
     }
     //--------------DOWNSIDE-----------------------
     if (IsKeyDown(KEY_UP)) {
-        if ((playerMoviment->y < object.bottomY) && (playerMoviment->y > object.upY) && ((playerMoviment->x < object.uprightX) && (playerMoviment->x > object.upleftX))) {
+        if ((playerMoviment->y < object.bottomY) && 
+            (playerMoviment->y > object.upY) && 
+            ((playerMoviment->x < object.uprightX) && 
+            (playerMoviment->x > object.upleftX))) {
             playerMoviment->y += 3.0f;
         }
     }
-    //--------------LEFTSIDE-----------------------
+
+    //-------------SIDES PRESSING UP OR DOWN--------
+
+    if (IsKeyDown(KEY_DOWN)) {
+        if ((playerMoviment->x < object.uprightX) && 
+            (playerMoviment->x > object.upleftX) && 
+            ((playerMoviment->y > object.upY) && 
+            (playerMoviment->y < object.bottomY))) {
+            playerMoviment->y += 3.0f;
+        }
+    }
+
+    if (IsKeyDown(KEY_UP)) {
+        if ((playerMoviment->x < object.uprightX) && 
+            (playerMoviment->x > object.upleftX) && 
+            ((playerMoviment->y > object.upY) && 
+            (playerMoviment->y < object.bottomY))) {
+            playerMoviment->y -= 3.0f;
+        }
+    }
+
+    //--------------RIGHTSIDE-----------------------
     if (IsKeyDown(KEY_LEFT)) {
-        if ((playerMoviment->x > object.upleftX) && (playerMoviment->x < object.uprightX) && ((playerMoviment->y > object.upY) && (playerMoviment->y < object.bottomY))) {
+        if ((playerMoviment->x > object.upleftX) && 
+            (playerMoviment->x < object.uprightX) && 
+            ((playerMoviment->y > object.upY) && 
+            (playerMoviment->y < object.bottomY))) {
             playerMoviment->x += 3.0f;
         }
     }
-    //--------------RIGHTSIDE-----------------------
+    //--------------LEFTSIDE-----------------------
     if (IsKeyDown(KEY_RIGHT)) {
-        if ((playerMoviment->x < object.uprightX) && (playerMoviment->x > object.upleftX) && ((playerMoviment->y > object.upY) && (playerMoviment->y < object.bottomY))) {
+        if ((playerMoviment->x < object.uprightX) && 
+            (playerMoviment->x > object.upleftX) && 
+            ((playerMoviment->y > object.upY) && 
+            (playerMoviment->y < object.bottomY))) {
             playerMoviment->x -= 3.0f;
         }
     }
