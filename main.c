@@ -4,11 +4,6 @@
 
 //-------------------objects-----------------
 typedef struct {
-    float x;
-    float y;
-} Player;
-
-typedef struct {
 
     int uprightX;
     int upleftX;
@@ -23,7 +18,7 @@ typedef struct {
 //-------------------------------------------
 
 //---------------functions-------------------
-void moviment(Player *playerMoviment, int screenW, int screenH, Object object);
+void moviment(Vector2 *playerMoviment, int screenW, int screenH, Object object);
 //-------------------------------------------
 
 int main(void)
@@ -34,7 +29,7 @@ int main(void)
     const int screenHeight = 450;
     int playerSize = 15;
 
-    Player player1;
+    Vector2 player1;
     player1.x = (float)screenWidth/2;
     player1.y = (float)screenHeight/2;
 
@@ -56,7 +51,6 @@ int main(void)
         //----------------------------------------------------------------------------------
         // TODO: Update your variables here
         //--------------------------------------------------------------------------------
-        
 
         if(IsKeyDown(KEY_R)) { 
             player1.x = (float)screenWidth/2;
@@ -85,7 +79,7 @@ int main(void)
     return 0;
 }
 
-void moviment(Player *playerMoviment, int screemW, int screemH, Object object) {
+void moviment(Vector2 *playerMoviment, int screemW, int screemH, Object object) {
 
     if (IsKeyDown(KEY_RIGHT)) {
         if (playerMoviment->x < screemW - 15) {
